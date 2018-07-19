@@ -6,9 +6,6 @@ void initialize_string(char **string){
 }
 
 void print_string(Chromossome chromo){
-  // for(char i=0;i<CHAR_SIZE;i++){
-  //   printf("%d ", *(chromo.string+i));
-  // }
   printf("%s\n", chromo.string);
 }
 

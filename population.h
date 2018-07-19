@@ -3,7 +3,7 @@
 
 #include "chromossome.h"
 
-#define POPULATION_SIZE 10
+#define POPULATION_SIZE 15
 
 void generate_population(Chromossome **population_pointer);
 void mutations(Chromossome *population, char mutation_p);

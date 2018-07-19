@@ -6,7 +6,7 @@
 #include <string.h>
 #include <time.h>
 
-#define CHAR_SIZE 50
+#define CHAR_SIZE 35
 
 typedef struct{
   char *string;

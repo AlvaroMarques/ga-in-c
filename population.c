@@ -56,6 +56,7 @@ void start_living(Chromossome *population, char *target, int ngens){
     population[POPULATION_SIZE-1] = children[0];
     population[POPULATION_SIZE-2] = children[1];
     print_string(population[0]);
+    if (strcmp(population[0].string,target) == 0) return;
   }
 }
 
