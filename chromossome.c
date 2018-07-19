@@ -18,10 +18,18 @@ void generate(Chromossome chromo){
   }
 }
 
-void mutate(Chromossome chromo){
-  if(rand()%100<chromo.mutate){
+void mutate(Chromossome chromo, char mutate){
+  if(rand()%100<mutate){
     chromo.string[rand()%CHAR_SIZE] = rand()%128;
   }
+}
+
+void error(Chromossome chromo,int *error, char *target){
+  int sum_error=0;
+  for(char i=0;i<CHAR_SIZE;i++){
+    sum_error = sum_error + (chromo.string[i] - target[i])*(chromo.string[i] - target[i]);
+  }
+  *error = sum_error;
 }
 
 Chromossome *crossover(Chromossome chromo1, Chromossome chromo2){
@@ -44,9 +52,6 @@ Chromossome *crossover(Chromossome chromo1, Chromossome chromo2){
   }
 
   crossed = malloc(2 * sizeof(Chromossome));
-
-  crossed[0].mutate = chromo1.mutate;
-  crossed[1].mutate = chromo1.mutate;
 
   crossed[0] = children1;
   crossed[1] = children2;
