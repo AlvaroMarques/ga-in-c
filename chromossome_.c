@@ -6,10 +6,10 @@ void initialize_string(char **string){
 }
 
 void print_string(Chromossome chromo){
-  // for(char i=0;i<CHAR_SIZE;i++){
-  //   printf("%d ", *(chromo.string+i));
-  // }
-  printf("%s\n", chromo.string);
+  for(char i=0;i<CHAR_SIZE;i++){
+    printf("%d ", *(chromo.string+i));
+  }
+  printf("\n");
 }
 
 void generate(Chromossome chromo){
@@ -18,18 +18,10 @@ void generate(Chromossome chromo){
   }
 }
 
-void mutate(Chromossome chromo, char mutate){
-  if(rand()%100<mutate){
+void mutate(Chromossome chromo){
+  if(rand()%100<chromo.mutate){
     chromo.string[rand()%CHAR_SIZE] = rand()%128;
   }
-}
-
-void error(Chromossome chromo,int *error, char *target){
-  int sum_error=0;
-  for(char i=0;i<CHAR_SIZE;i++){
-    sum_error = sum_error + (chromo.string[i] - target[i])*(chromo.string[i] - target[i]);
-  }
-  *error = sum_error;
 }
 
 Chromossome *crossover(Chromossome chromo1, Chromossome chromo2){

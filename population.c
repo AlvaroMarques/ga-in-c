@@ -20,7 +20,6 @@ void generate_population(Chromossome **population_pointer){
     generate(c);
     (*population_pointer)[i] = c;
   }
-  print_population(*population_pointer);
   return;
 }
 
@@ -28,12 +27,10 @@ void mutations(Chromossome *population, char mutation_p){
   for(char i=0;i<POPULATION_SIZE;i++){
     mutate(*(population+i),mutation_p);
   }
-  print_population(population);
 }
 
 void sorted_values(Chromossome *population, char *target){
   get_errors(population,target);
-
    //insertion sort that i found in https://www.geeksforgeeks.org/insertion-sort/ (yes i'm to lazy to do it myself)
    int i, j;
    Chromossome key;
@@ -48,6 +45,18 @@ void sorted_values(Chromossome *population, char *target){
        population[j+1] = key;
    }
   return;
+}
+void start_living(Chromossome *population, char *target, int ngens){
+  generate_population(&population);
+  for(int i=0;i<ngens;i++){
+    print_population(population);
+    mutations(population,3);
+    sorted_values(population,target);
+    Chromossome *children = crossover(population[0],population[1]);
+    population[POPULATION_SIZE-1] = children[0];
+    population[POPULATION_SIZE-2] = children[1];
+    print_string(population[0]);
+  }
 }
 
 
